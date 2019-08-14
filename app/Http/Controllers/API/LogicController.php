@@ -170,6 +170,7 @@ class LogicController extends Controller
         $publicKey = str_replace("\\n", "\n", $messages->publicKey);
         
         $rsa = new RSA($publicKey);
+        $ret = "-----start-----" . $ret . "-----end-----";
         $encryptedMessage = $rsa->base64Encrypt($ret);
 
         return response()->json(['success' => $encryptedMessage], $this->successStatus);
